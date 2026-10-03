@@ -9,7 +9,6 @@ const postSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // Optimize query performance with indexes (Phase 9)
-postSchema.index({ slug: 1 });
 postSchema.index({ isDeleted: 1, createdAt: -1 });
 
 // Auto-generate slug before saving if title exists
