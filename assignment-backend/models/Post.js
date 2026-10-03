@@ -12,11 +12,10 @@ const postSchema = new mongoose.Schema({
 postSchema.index({ isDeleted: 1, createdAt: -1 });
 
 // Auto-generate slug before saving if title exists
-postSchema.pre('validate', function(next) {
+postSchema.pre('validate', function() {
   if (this.title && !this.slug) {
     this.slug = this.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
   }
-  next();
 });
 
 module.exports = mongoose.model('Post', postSchema);
